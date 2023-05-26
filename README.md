@@ -1,3 +1,2 @@
-# lorentz_force
-# Measure of the Lorentz Force 
+# Experimental measure of the Lorentz Force 
 Launch in MATLAB the script PAF.m
