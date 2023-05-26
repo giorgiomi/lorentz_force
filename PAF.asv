@@ -1,0 +1,29 @@
+%PAF script
+clear; close all; clc;
+addpath scripts/;
+
+RSG_verde_giallo = 0.99855e03;
+R_rosso_nero = 1.05177e03;
+V_BIAS = 12;
+i_rosso_nero = V_BIAS/R_rosso_nero;
+i_rosso_nero_meas = 11e-03; %per ora le cose funzionano.
+V_offset = 432e-06; %432 uV
+
+data = readmatrix("data.xlsx");
+m = data(1:end,1)*1e3;
+V = data(1:end,2)*1e3;
+dV = data(:,3)*1e3;
+
+figure();
+axes();
+hold on
+grid on
+errorbar(m,V,dV,'.','MarkerSize',12);
+xlabel("mass [g]");
+ylabel("voltage [mV]")
+
+fit_data = regressione_lineare(m,V,dV);
+
+xx = 0:0.1:25;
+plot(xx,fit_data.m*xx+fit_data.b)
+
