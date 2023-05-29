@@ -70,8 +70,8 @@ ylim(vlim)
 title("Data")
 
 % definire intervalli da analizzare (ad esempio per diverse distanze)
-t_ran = [840 11e3; 12e3 22e3; 23e3 34e3; 35e3 45e3; ];
-fAC = [100; 200; 500; 1000];
+t_ran = [1 11; 12 22; 23 34; 35 45;47 57;58 68;70 80;81 91;93 103;105 114;116 126;127 137; 139 200]*1e3;
+fAC = [100; 200; 500; 1000;2000;3000;4000;50000;6000;7000;8000;10000;15000];
 figure(fig_time_series);
 for jj=1:size(t_ran,1)
     plot(t_ran(jj,1)*[1 1],vlim,'g--');
@@ -79,7 +79,7 @@ for jj=1:size(t_ran,1)
 end
 %%
 ind = [1:length(fAC)]';
-t_OFF = [0.53*ones(size(t_ran,1))-ind*.00] ; % offset t_0 
+t_OFF = [1.1*ones(size(t_ran,1))-ind*.00] ; % offset t_0 
 % qui immagino un piccolo ritardo per l'impostazione oscillatore ogni ciclo ... 
 
 f_mod = 0.1;            % frequenza modulazione forza
@@ -187,7 +187,7 @@ ylabel('F_{DEMOD} (N) ')
 xlabel('Frequency (Hz)')
 title('1f');
 
-return
+%return
 % aggiungere modello (calcolato in un altro programma): 
 plot(f_model,F_dem_model_1f_sin,'m');
 legend('F_{1f} (cos)','F_{1f} (sin)','model sine 1f','autoupdate','off');

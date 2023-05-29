@@ -75,33 +75,33 @@ Corrente_long=Corrente_long(:,2);
 
 time=(0:(length(Voltaggio_long)-1))*0.5;
 
-% figure()
-% hold on;
-% grid on;
-% box on;
-% 
-% plot(time,Voltaggio_long,'LineWidth',0.2);
+figure()
+hold on;
+grid on;
+box on;
+
+plot(time,Voltaggio_long,'LineWidth',0.2);
 
 %%
 figtimeseries = figure;
-t=time;
+t=time';
 V=Voltaggio_long;
 
 plot(t, V); % Assuming it's a temporal series (t, V)
 hold on; grid on;
-vlim = [0 15e-3];
+vlim = [9.65e-3 9.7e-3];
 ylim(vlim);
 
 % Define intervals to analyze at different distances
-tran = [10000 15000; 15200 20000];
+tran = [840 11000; 12000 22000; 23000  34000; 35000 45000 ]; %15 h
 
 figure(figtimeseries);
 for jj = 1:size(tran, 1)
     plot(tran(jj, 1) * [1 1], vlim, 'g--');
     plot(tran(jj, 2) * [1 1], vlim, 'm--');
 end
-%%
-tOFF = [3.75; 3.75]; % Offset t0, manually set
+
+tOFF = [4; 0; 0; 0]; % Offset t0, manually set
 fmod = 0.1; % Modulation frequency
 Tciclo = 1 / fmod;
 nfit = 10; % Fit 10 cycles per volta
